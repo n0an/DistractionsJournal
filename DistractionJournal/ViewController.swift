@@ -22,6 +22,12 @@ class ViewController: UIViewController {
         tableView.delegate = self
         
         
+        getDistractions()
+        
+        addObsever()
+    }
+    
+    func addObsever() {
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "distractionNotification"), object: nil, queue: nil) { (notification) in
             
             DispatchQueue.main.async {
@@ -33,6 +39,7 @@ class ViewController: UIViewController {
     func getDistractions() {
         let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
         let fetchRequest = Distraction.fetchRequest() as NSFetchRequest<Distraction>
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
         if let distr = try? context?.fetch(fetchRequest) {
             self.distractions = distr
@@ -50,7 +57,12 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         
-        cell.textLabel?.text = distractions[indexPath.row].name
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d h:mma"
+        
+        let distraction = distractions[indexPath.row]
+        
+        cell.textLabel?.text = "\(distraction.name ?? "Empty") - \(formatter.string(from: distraction.date ?? Date()))"
         
         return cell
     }
