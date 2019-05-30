@@ -20,6 +20,8 @@
 		15F51F62229EBFCB00880504 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F51F61229EBFCB00880504 /* ExtensionDelegate.swift */; };
 		15F51F64229EBFCB00880504 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F51F63229EBFCB00880504 /* NotificationController.swift */; };
 		15F51F66229EBFCC00880504 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15F51F65229EBFCC00880504 /* Assets.xcassets */; };
+		15F51F7722A007ED00880504 /* DistractionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F51F7622A007EC00880504 /* DistractionsController.swift */; };
+		15F51F7922A0085D00880504 /* DistractionsRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F51F7822A0085D00880504 /* DistractionsRowController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,8 @@
 		15F51F65229EBFCC00880504 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		15F51F67229EBFCC00880504 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15F51F68229EBFCC00880504 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		15F51F7622A007EC00880504 /* DistractionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistractionsController.swift; sourceTree = "<group>"; };
+		15F51F7822A0085D00880504 /* DistractionsRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistractionsRowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				15F51F5F229EBFCB00880504 /* InterfaceController.swift */,
+				15F51F7822A0085D00880504 /* DistractionsRowController.swift */,
+				15F51F7622A007EC00880504 /* DistractionsController.swift */,
 				15F51F61229EBFCB00880504 /* ExtensionDelegate.swift */,
 				15F51F63229EBFCB00880504 /* NotificationController.swift */,
 				15F51F65229EBFCC00880504 /* Assets.xcassets */,
@@ -300,8 +306,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15F51F7922A0085D00880504 /* DistractionsRowController.swift in Sources */,
 				15F51F64229EBFCB00880504 /* NotificationController.swift in Sources */,
 				15F51F62229EBFCB00880504 /* ExtensionDelegate.swift in Sources */,
+				15F51F7722A007ED00880504 /* DistractionsController.swift in Sources */,
 				15F51F60229EBFCB00880504 /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

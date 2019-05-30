@@ -1,47 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14256" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14490.70" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14243"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14219"/>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14490.21"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModuleProvider="target"/>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="DistractionJournal_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <label width="1" alignment="left" text="Let's Stay Focused Today" textAlignment="center" numberOfLines="0" id="Qcl-jW-l4s"/>
+                        <separator alignment="left" id="Nyd-ck-gpD"/>
+                        <button width="1" alignment="left" title="Log Distraction" id="gDg-8j-RZC">
+                            <connections>
+                                <segue destination="Lv8-YB-vbh" kind="push" id="a9D-EY-0An"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Remind Me" id="bxh-eV-p3g"/>
+                    </items>
+                </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="345"/>
+            <point key="canvasLocation" x="129" y="50"/>
+        </scene>
+        <!--Distractions Controller-->
+        <scene sceneID="7Dw-P6-3LT">
+            <objects>
+                <controller id="Lv8-YB-vbh" customClass="DistractionsController" customModule="DistractionJournal_WatchKit_Extension">
+                    <items>
+                        <table alignment="left" id="eC2-S9-Fdu">
+                            <items>
+                                <tableRow identifier="distractionRow" id="Dp3-Hk-qSI" customClass="DistractionsRowController" customModule="DistractionJournal_WatchKit_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="pTf-9v-myO">
+                                        <items>
+                                            <label width="1" height="1" alignment="left" text="Label" textAlignment="center" id="XDE-aS-iEl"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="label" destination="XDE-aS-iEl" id="E5A-2h-24j"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="table" destination="eC2-S9-Fdu" id="b7B-cw-RPX"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="392" y="50"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
             <objects>
                 <notificationController id="YCC-NB-fut">
                     <items>
-                        <label alignment="left" text="Alert Label" numberOfLines="0" id="IdU-wH-bcW"/>
+                        <label alignment="left" text="Are you still working?" numberOfLines="0" id="IdU-wH-bcW"/>
                     </items>
                     <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
                     <connections>
                         <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
-                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
-                        <segue destination="eXb-UN-Cd0" kind="relationship" relationship="dynamicInteractiveNotificationInterface" id="mpB-YA-K8N"/>
                     </connections>
                 </notificationController>
             </objects>
-            <point key="canvasLocation" x="220" y="643"/>
+            <point key="canvasLocation" x="129" y="751"/>
         </scene>
-        <!--Notification Controller-->
-        <scene sceneID="ZPc-GJ-vnh">
+        <!--Interface Controller-->
+        <scene sceneID="T9w-Qz-jK3">
             <objects>
-                <controller id="4sK-HA-Art" customClass="NotificationController" customModuleProvider="target"/>
+                <controller id="zjm-RY-drw">
+                    <items>
+                        <label alignment="left" text="Check on me for the next:" numberOfLines="0" id="qTp-AR-N9z"/>
+                        <picker height="100" alignment="left" id="cvc-PU-wxo"/>
+                        <button width="1" alignment="left" title="Start" id="DOY-Zy-t7u"/>
+                        <button width="1" alignment="left" title="Delete Reminders" id="OOU-h6-kCR"/>
+                    </items>
+                </controller>
             </objects>
-            <point key="canvasLocation" x="468" y="643"/>
-        </scene>
-        <!--Notification Controller-->
-        <scene sceneID="Niz-AI-uX2">
-            <objects>
-                <controller id="eXb-UN-Cd0" customClass="NotificationController" customModuleProvider="target"/>
-            </objects>
-            <point key="canvasLocation" x="468" y="345"/>
+            <point key="canvasLocation" x="129" y="378"/>
         </scene>
     </scenes>
 </document>
