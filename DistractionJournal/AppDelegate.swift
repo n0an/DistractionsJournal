@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // !!!IMPORTANT!!!
+        // Connectivity between watch and iPhone
         if WCSession.isSupported() {
             WCSession.default.delegate = self
             WCSession.default.activate()
@@ -97,15 +99,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+// !!!IMPORTANT!!!
+// Connectivity between watch and iPhone
 extension AppDelegate: WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        if error != nil {
-            print(error?.localizedDescription)
+        if let error = error {
+            print(error.localizedDescription)
             return
         }
         
         print("iOS --- activationDidCompleteWith")
-        
     }
     
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
@@ -120,11 +123,9 @@ extension AppDelegate: WCSessionDelegate {
         
         self.saveContext()
         
-        
         let notification = Notification(name: Notification.Name("distractionNotification"), object: nil, userInfo: ["distraction": distraction])
         
         NotificationCenter.default.post(notification)
-        
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) {

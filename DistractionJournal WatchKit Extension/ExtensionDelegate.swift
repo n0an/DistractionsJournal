@@ -15,11 +15,12 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
         
+        // !!!IMPORTANT!!!
+        // Connectivity between watch and iPhone
         if WCSession.isSupported() {
             WCSession.default.delegate = self
             WCSession.default.activate()
         }
-        
     }
 
     func applicationDidBecomeActive() {
@@ -61,11 +62,26 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         }
     }
     
-    
+    // MARK: - UserNotification ask
+    func askForNotificationPermission() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound,]) { (success, error) in
+            if success == true {
+                UNUserNotificationCenter.current().delegate = self
+                
+                let yesAction = UNNotificationAction(identifier: "yesAction", title: "Yes", options: [])
+                let noAction = UNNotificationAction(identifier: "noAction", title: "No", options: [.foreground])
 
+                let category = UNNotificationCategory(identifier: "workingCategory", actions: [yesAction, noAction], intentIdentifiers: [], options: [])
+                
+                UNUserNotificationCenter.current().setNotificationCategories([category])
+            }
+        }
+    }
 }
 
 // MARK: - WatchConnectivity
+// !!!IMPORTANT!!!
+// Connectivity between watch and iPhone
 extension ExtensionDelegate: WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if let error = error {
@@ -75,19 +91,17 @@ extension ExtensionDelegate: WCSessionDelegate {
         
         print("watchOS --- activationDidCompleteWith")
     }
-    
-    
 }
 
 // MARK: - UserNotifications
 extension ExtensionDelegate: UNUserNotificationCenterDelegate {
     
-    func askForNotification() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound,]) { (success, error) in
-            if success == true {
-                UNUserNotificationCenter.current().delegate = self
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        if response.actionIdentifier == "noAction" {
+            if let interfaceController = WKExtension.shared().rootInterfaceController as? InterfaceController {
+                interfaceController.popToRootController()
+                interfaceController.pushController(withName: "DistractionsController", context: nil)
             }
         }
-        
     }
 }

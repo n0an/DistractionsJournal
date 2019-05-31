@@ -14,7 +14,6 @@ class NotificationsInterfaceController: WKInterfaceController {
 
     @IBOutlet weak var picker: WKInterfacePicker!
     
-    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
@@ -38,23 +37,22 @@ class NotificationsInterfaceController: WKInterfaceController {
         picker.setItems(pickerItems)
         
         if let extensionDelegate = WKExtension.shared().delegate as? ExtensionDelegate {
-            extensionDelegate.askForNotification()
+            extensionDelegate.askForNotificationPermission()
         }
-        
     }
     
     
     @IBAction func pickerChanged(_ value: Int) {
         
         
-        
     }
-    
     
     @IBAction func startButtonTapped() {
         
         let content = UNMutableNotificationContent()
         content.body = "Are you still working?"
+        
+        content.categoryIdentifier = "workingCategory"
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         
@@ -67,18 +65,10 @@ class NotificationsInterfaceController: WKInterfaceController {
             }
             
             print("Scheduled")
-            
-            
         }
-        
-        
-        
     }
     
     @IBAction func deleteButtonTapped() {
         
     }
-    
-    
-    
 }
