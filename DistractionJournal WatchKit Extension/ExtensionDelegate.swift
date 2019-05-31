@@ -64,7 +64,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     
     // MARK: - UserNotification ask
     func askForNotificationPermission() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound,]) { (success, error) in
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (success, error) in
             if success == true {
                 UNUserNotificationCenter.current().delegate = self
                 

@@ -14,6 +14,8 @@ class NotificationsInterfaceController: WKInterfaceController {
 
     @IBOutlet weak var picker: WKInterfacePicker!
     
+    var hours = 1
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
@@ -43,32 +45,51 @@ class NotificationsInterfaceController: WKInterfaceController {
     
     
     @IBAction func pickerChanged(_ value: Int) {
-        
-        
+        hours = value + 1
     }
     
     @IBAction func startButtonTapped() {
         
-        let content = UNMutableNotificationContent()
-        content.body = "Are you still working?"
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         
-        content.categoryIdentifier = "workingCategory"
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-        
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        
-        UNUserNotificationCenter.current().add(request) { (error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
+        for hour in 1...hours {
+            let content = UNMutableNotificationContent()
+            content.body = "Are you still working?"
             
-            print("Scheduled")
+            content.categoryIdentifier = "workingCategory"
+            
+            let seconds = 20 * hour
+            
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(seconds), repeats: false)
+            
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+            
+            
+            UNUserNotificationCenter.current().add(request) { (error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+                
+                print("Scheduled")
+            }
         }
+        
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (requests) in
+            print(requests.count)
+        }
+        
+        pop()
     }
     
     @IBAction func deleteButtonTapped() {
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (requests) in
+            print(requests.count)
+        }
+        
+        pop()
         
     }
 }
