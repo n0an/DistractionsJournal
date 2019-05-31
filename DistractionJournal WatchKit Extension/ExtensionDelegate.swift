@@ -8,6 +8,7 @@
 
 import WatchKit
 import WatchConnectivity
+import UserNotifications
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
@@ -59,13 +60,16 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             }
         }
     }
+    
+    
 
 }
 
+// MARK: - WatchConnectivity
 extension ExtensionDelegate: WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        if error != nil {
-            print(error)
+        if let error = error {
+            print(error.localizedDescription)
             return
         }
         
@@ -73,4 +77,17 @@ extension ExtensionDelegate: WCSessionDelegate {
     }
     
     
+}
+
+// MARK: - UserNotifications
+extension ExtensionDelegate: UNUserNotificationCenterDelegate {
+    
+    func askForNotification() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound,]) { (success, error) in
+            if success == true {
+                UNUserNotificationCenter.current().delegate = self
+            }
+        }
+        
+    }
 }

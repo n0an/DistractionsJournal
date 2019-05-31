@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		152FD4BE22A1262D00704AFF /* NotificationsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152FD4BD22A1262D00704AFF /* NotificationsInterfaceController.swift */; };
 		15F51F3D229EBFC600880504 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F51F3C229EBFC600880504 /* AppDelegate.swift */; };
 		15F51F3F229EBFC600880504 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F51F3E229EBFC600880504 /* ViewController.swift */; };
 		15F51F42229EBFC600880504 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15F51F40229EBFC600880504 /* Main.storyboard */; };
@@ -68,6 +69,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		152FD4BD22A1262D00704AFF /* NotificationsInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsInterfaceController.swift; sourceTree = "<group>"; };
 		15F51F39229EBFC600880504 /* DistractionJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DistractionJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15F51F3C229EBFC600880504 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15F51F3E229EBFC600880504 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				15F51F5F229EBFCB00880504 /* InterfaceController.swift */,
+				152FD4BD22A1262D00704AFF /* NotificationsInterfaceController.swift */,
 				15F51F7822A0085D00880504 /* DistractionsRowController.swift */,
 				15F51F7622A007EC00880504 /* DistractionsController.swift */,
 				15F51F61229EBFCB00880504 /* ExtensionDelegate.swift */,
@@ -312,6 +315,7 @@
 			files = (
 				15F51F7922A0085D00880504 /* DistractionsRowController.swift in Sources */,
 				15F51F64229EBFCB00880504 /* NotificationController.swift in Sources */,
+				152FD4BE22A1262D00704AFF /* NotificationsInterfaceController.swift in Sources */,
 				15F51F62229EBFCB00880504 /* ExtensionDelegate.swift in Sources */,
 				15F51F7722A007ED00880504 /* DistractionsController.swift in Sources */,
 				15F51F60229EBFCB00880504 /* InterfaceController.swift in Sources */,

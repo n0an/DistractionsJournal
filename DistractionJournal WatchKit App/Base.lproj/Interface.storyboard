@@ -21,7 +21,11 @@
                                 <segue destination="Lv8-YB-vbh" kind="push" id="a9D-EY-0An"/>
                             </connections>
                         </button>
-                        <button width="1" alignment="left" title="Remind Me" id="bxh-eV-p3g"/>
+                        <button width="1" alignment="left" title="Remind Me" id="bxh-eV-p3g">
+                            <connections>
+                                <segue destination="zjm-RY-drw" kind="push" id="u4y-XB-pYe"/>
+                            </connections>
+                        </button>
                     </items>
                 </controller>
             </objects>
@@ -69,19 +73,34 @@
             </objects>
             <point key="canvasLocation" x="129" y="751"/>
         </scene>
-        <!--Interface Controller-->
+        <!--Notifications Interface Controller-->
         <scene sceneID="T9w-Qz-jK3">
             <objects>
-                <controller id="zjm-RY-drw">
+                <controller id="zjm-RY-drw" customClass="NotificationsInterfaceController" customModule="DistractionJournal_WatchKit_Extension">
                     <items>
                         <label alignment="left" text="Check on me for the next:" numberOfLines="0" id="qTp-AR-N9z"/>
-                        <picker height="100" alignment="left" id="cvc-PU-wxo"/>
-                        <button width="1" alignment="left" title="Start" id="DOY-Zy-t7u"/>
-                        <button width="1" alignment="left" title="Delete Reminders" id="OOU-h6-kCR"/>
+                        <picker height="60" alignment="left" focusStyle="stack" id="cvc-PU-wxo">
+                            <connections>
+                                <action selector="pickerChanged:" destination="zjm-RY-drw" id="Wfe-hI-eFc"/>
+                            </connections>
+                        </picker>
+                        <button width="1" alignment="left" title="Start" id="DOY-Zy-t7u">
+                            <connections>
+                                <action selector="startButtonTapped" destination="zjm-RY-drw" id="nPF-Da-ZZV"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Delete Reminders" id="OOU-h6-kCR">
+                            <connections>
+                                <action selector="deleteButtonTapped" destination="zjm-RY-drw" id="Xi9-yX-VVl"/>
+                            </connections>
+                        </button>
                     </items>
+                    <connections>
+                        <outlet property="picker" destination="cvc-PU-wxo" id="ppw-Up-v5T"/>
+                    </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="129" y="378"/>
+            <point key="canvasLocation" x="129" y="403"/>
         </scene>
     </scenes>
 </document>
